@@ -1,12 +1,11 @@
 package com.example.ep3.services;
 
-import com.example.ep3.interfaces.PermanentesFields;
+import com.example.ep3.classes.Permanentes;
 import com.example.ep3.interfaces.PermanentesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.util.List;
 
 @Service("permanentesService")
 public class PermanentesService {
@@ -15,9 +14,11 @@ public class PermanentesService {
     private PermanentesRepository repository;
 
     @PostConstruct
-    public List<PermanentesFields> listByMonthYear(){
-
-        return repository.aGetAllByDate();
+    public Iterable<Permanentes> listByMonthYear(){
+        Iterable<Permanentes> permanentes = repository.findAll();
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        permanentes.forEach(System.out::println);
+        return permanentes;
 
     }
 
